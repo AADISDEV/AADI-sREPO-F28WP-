@@ -1,3 +1,3 @@
-# F28WP-lab1
+# aadisdev
 
-This is a read me file
+This is an example repo for the first lab for F28WP 2023.
