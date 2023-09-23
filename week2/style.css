@@ -141,19 +141,24 @@ main h3 {
     margin-top: 30px;
     font-size: 1.6em;
     border-style: solid;
-    border: 1px;
-    border-color: black;
+    border: 1px, solid, black;
     
 }
 
 .cta-container h2 {
-    text-decoration: dotted;
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+
+.cta-container p {
+    font-size: 1.2em;
+    font-weight: 350;
 }
 
 .cta-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #007BFF;
+    background-color: black;
     color: #ffffff;
     text-decoration: none;
     border-radius: 500px;
