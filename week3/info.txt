@@ -1,0 +1,8 @@
+The slideshow was made using HTML, CSS, and JavaScript being the main tools used for design and functionality. 
+The slideshow was smoothly integrated into the website's design thanks to the use of CSS styles and an 
+HTML framework that included a special container for photos. Image transitions were made easier by JavaScript logic, 
+which used a timer and an array of image paths to switch between images at predefined intervals. 
+
+During the development process, other obstacles surfaced, such as optimizing the speed at which images loaded, when 
+obtaining images from external sources. Preloading pictures, saving images locally, and utilizing responsive design strategies all 
+helped to overcome these difficulties. 
