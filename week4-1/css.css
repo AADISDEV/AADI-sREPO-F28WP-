@@ -42,7 +42,9 @@ button {
     margin: 20px 0; 
 }
 .weather-entry {
-    border-bottom: 2px solid black;
+    margin: auto;
+    width: 621px;
     margin-bottom: 10px;
     padding-bottom: 10px;
+    border-bottom: 1px solid darkgray;
 }

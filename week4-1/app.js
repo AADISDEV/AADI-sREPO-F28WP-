@@ -21,13 +21,14 @@ document.getElementById('btn').addEventListener('click', function() {
 
         // Set the innerHTML of the new div
         newWeatherDiv.innerHTML = `
-            <p>Weather Description: ${weather}</p>
-            <p>Temperature: ${temp} °C</p>
-            <p>Wind Speed: ${windSpeed} m/s</p>
+            <p>The weather in ${city} is ${weather}.</p>
+            <p>The temperature is ${temp} °C with a wind speed of ${windSpeed}m/s.</p>
         `;
 
-        // Append the new div to the weather-info container
-        document.getElementById('weather-info').appendChild(newWeatherDiv);
+        let weatherInfoContainer = document.getElementById('weather-info');
+
+        // Insert the new div before the first child of weather-info
+        weatherInfoContainer.insertBefore(newWeatherDiv, weatherInfoContainer.firstChild);
 
         // Clear the city input text box
         document.getElementById('city-info').value = '';
