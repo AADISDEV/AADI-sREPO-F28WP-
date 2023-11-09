@@ -1,39 +1,27 @@
-var cityContainer = document.getElementById("city-info");
-var btn = document.getElementById("btn");
-btn.addEventListener("click", function() {
-    var ourRequest = new XMLHttpRequest();
-    ourRequest.open('GET', 'https://github.com/AADISDEV/F28WP-Lab1/blob/main/week4-1/cities1.json');
-    ourRequest.onload = function() {
-        var ourData = JSON.parse(ourRequest.responseText);
-        renderHTML(ourData);
-        btn.classList.add("hide-me");
-    };
-    ourRequest.send();
-});
+document.getElementById('btn').addEventListener('click', function() {
+    let city = document.getElementById('cityInput').value;
+    let apiKey = 'YOUR_API_KEY'; // Remember to replace 'YOUR_API_KEY' with your actual API key
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-function renderHTML(data) {
-    var htmlString = "";
-    for (i = 0; i < data.length; i++) {
-        htmlString += `<p>${data[i].name} is a city in ${data[i].country},<br>
-        Where you can enjoy indoor places like: `;
-        for (ii = 0; ii < data[i].places.indoor.length; ii++) {
-            // Loop through the indoor places of the current city.
-            if (ii == 0) {
-                htmlString += data[i].places.indoor[ii];
-            } else {
-                htmlString += ", and " + data[i].places.indoor[ii];
-            }
+    fetch(url)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-        htmlString += '. & enjoy outdoor places like: ';
-        // Loop through the outdoor places of the current city.
-        for (ii = 0; ii < data[i].places.outdoor.length; ii++) {
-            if (ii == 0) {
-                htmlString += data[i].places.outdoor[ii];
-            } else {
-                htmlString += " and " + data[i].places.outdoor[ii];
-            }
-        }
-        htmlString += '.</p>';
-    }
-    cityContainer.insertAdjacentHTML('beforeend', htmlString);
-}
+        return response.json();
+    })
+    .then(data => {
+        let weather = data.weather[0].description;
+        let temp = data.main.temp;
+        let windSpeed = data.wind.speed;
+        document.getElementById('weather-info').innerHTML = `
+            <p>Weather Description: ${weather}</p>
+            <p>Temperature: ${temp} °C</p>
+            <p>Wind Speed: ${windSpeed} m/s</p>
+        `;
+    })
+    .catch(error => {
+        console.log(error);
+        document.getElementById('weather-info').innerHTML = `<p>Error getting weather data: ${error.message}</p>`;
+    });
+});
