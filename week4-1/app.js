@@ -1,6 +1,6 @@
 document.getElementById('btn').addEventListener('click', function() {
-    let city = document.getElementById('cityInput').value;
-    let apiKey = 'YOUR_API_KEY'; // Remember to replace 'YOUR_API_KEY' with your actual API key
+    let city = document.getElementById('city-info').value;
+    let apiKey = 'af0135b4b614ba0e00a6dac2bf540b64'; 
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
     fetch(url)
@@ -14,11 +14,23 @@ document.getElementById('btn').addEventListener('click', function() {
         let weather = data.weather[0].description;
         let temp = data.main.temp;
         let windSpeed = data.wind.speed;
-        document.getElementById('weather-info').innerHTML = `
+
+        // Create a new div element for the weather information
+        let newWeatherDiv = document.createElement('div');
+        newWeatherDiv.classList.add('weather-entry'); // Add a class for CSS
+
+        // Set the innerHTML of the new div
+        newWeatherDiv.innerHTML = `
             <p>Weather Description: ${weather}</p>
             <p>Temperature: ${temp} °C</p>
             <p>Wind Speed: ${windSpeed} m/s</p>
         `;
+
+        // Append the new div to the weather-info container
+        document.getElementById('weather-info').appendChild(newWeatherDiv);
+
+        // Clear the city input text box
+        document.getElementById('city-info').value = '';
     })
     .catch(error => {
         console.log(error);
